@@ -10,4 +10,4 @@ tmp
 # The development sqlite file
 database/*.sqlite
 
-docker.compose.yaml
+docker-compose.yml
