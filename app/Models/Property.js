@@ -16,8 +16,8 @@ class Property extends Model {
     * sin(radians(latitude))))`
 
     return query
-    .select('*',Database.raw(`${haversine} as distance`))
-    .whereRaw(`${haversine} < ${distance}`)
+      .select('*', Database.raw(`${haversine} as distance`))
+      .whereRaw(`${haversine} < ${distance}`)
   }
 
   user() {
