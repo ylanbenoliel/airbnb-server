@@ -23,6 +23,7 @@ class PropertyController {
     const { latitude, longitude } = request.all()
 
     const properties = Property.query()
+      .with('images')
       .nearBy(latitude, longitude, 10)
       .fetch()
 
@@ -37,7 +38,7 @@ class PropertyController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ auth, request, response }) {
+  async store({ auth, request, response }) {
     const { id } = auth.user
     const data = request.only([
       'title',
@@ -46,12 +47,12 @@ class PropertyController {
       'longitude',
       'price'
     ])
-  
+
     const property = await Property.create({ ...data, user_id: id })
-  
+
     return property
   }
-  
+
 
   /**
    * Display a single property.
@@ -65,7 +66,7 @@ class PropertyController {
   async show({ params }) {
     const property = await Property.findOrFail(params.id)
 
-    // await property.load('images') || []
+    await property.load('images')
 
     return property
   }

@@ -25,7 +25,7 @@ class Property extends Model {
   }
 
   images() {
-    return this.hasMany('App/Model/Image')
+    return this.hasMany('App/Models/Image')
   }
 }
 
